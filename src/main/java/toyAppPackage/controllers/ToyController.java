@@ -54,10 +54,19 @@ public class ToyController {
         return "toys";
     }
 
+    @GetMapping("/toysBS")
+    public String allToysBS(Model model){
+
+
+        model.addAttribute("toys", toyService.getAllToys());
+
+        return "index";
+    }
+
     @GetMapping("addToy")
     public String makeToy(Model model){
 
-        model.addAttribute("toy", new Toy());
+        model.addAttribute("toy", new Toy(null, null, 0.0, null));
 
         return "addtoy";
     }
