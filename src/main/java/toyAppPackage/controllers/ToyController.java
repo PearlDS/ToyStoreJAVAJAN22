@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import toyAppPackage.data.Toy;
 import toyAppPackage.services.interfaces.ToyService;
 
@@ -51,6 +52,21 @@ public class ToyController {
         model.addAttribute("toys", toyService.getAllToys());
 
         return "toys";
+    }
+
+    @GetMapping("addToy")
+    public String makeToy(Model model){
+
+        model.addAttribute("toy", new Toy());
+
+        return "addtoy";
+    }
+
+
+    @PostMapping("addToy")
+    public String addToy(Toy toy){
+        toyService.createToy(toy);
+        return "redirect:/toys";
     }
 
 
